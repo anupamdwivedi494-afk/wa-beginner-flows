@@ -1,7 +1,7 @@
 from prefect import flow, task
 from random import randint
 
-@task(retries=3, retry_delay_seconds=2)
+@task(retries=5, retry_delay_seconds=2)
 def unstable_task():
     n = randint(1, 10)
     if n <= 7:
@@ -14,4 +14,5 @@ def retry_example():
 
 if __name__ == "__main__":
     retry_example()
+
 
