@@ -15,7 +15,7 @@ def transform(data):
 
 @task
 def load(data):
-    logger = get_run_logger()
+       logger = get_run_logger()
     logger.info(f"Loading: {data}")
     return f"{data}"
 
@@ -35,5 +35,3 @@ def post_etl_flow():
 def notification_flow():
     logger = get_run_logger()
     logger.info("Notification sent")
-    return "Notification sent"
-
