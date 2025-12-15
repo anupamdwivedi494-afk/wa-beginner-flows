@@ -25,7 +25,7 @@ def etl_flow(job_name: str = "Daily ETL"):
     processed = transform(raw)
     load(f"{job_name}: {processed}")
 
-@@flow
+@flow
 def post_etl_flow():
     logger = get_run_logger()
     logger.info("Post ETL tasks executed")
@@ -35,3 +35,4 @@ def post_etl_flow():
 def notification_flow():
     logger = get_run_logger()
     logger.info("Notification sent")
+    return "Notification sent"
