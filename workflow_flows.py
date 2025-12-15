@@ -1,4 +1,3 @@
-
 from prefect import flow, task
 
 @task
@@ -25,3 +24,4 @@ def post_etl_flow():
 
 @flow
 def notification_flow():
+    return "Notification sent"  # Logs not visible
