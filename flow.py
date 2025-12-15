@@ -32,6 +32,8 @@ def post_etl_flow():
     return "Post ETL tasks executed"
 
 @flow
-defdef notification_flow():
+def notification_flow():
     logger = get_run_logger()
     logger.info("Notification sent")
+    return "Notification sent"
+
