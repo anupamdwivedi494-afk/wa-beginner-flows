@@ -3,7 +3,6 @@ from prefect import flow, task, get_run_logger
 
 @task
 def extract():
-    # Use Prefect logger so messages appear in Cloud logs for push work pools
     logger = get_run_logger()
     logger.info("Extracting data...")
     return "Data Extracted"
@@ -17,17 +16,16 @@ def transform(data):
 @task
 def load(data):
     logger = get_run_logger()
-    # Using logger ensures visibility in Prefect Cloud logs
     logger.info(f"Loading: {data}")
     return f"{data}"
 
 @flow
-def etl_flow(job_name: str = "Daily ETL"):   # FIXED: 'str' instead of 'ste'
+def etl_flow(job_name: str = "Daily ETL"):
     raw = extract()
     processed = transform(raw)
     load(f"{job_name}: {processed}")
 
-@flow
+@@flow
 def post_etl_flow():
     logger = get_run_logger()
     logger.info("Post ETL tasks executed")
@@ -36,4 +34,4 @@ def post_etl_flow():
 @flow
 def notification_flow():
     logger = get_run_logger()
-    logger.info("Notification    logger.info("Notification sent")
+    logger.info("Notification sent")
