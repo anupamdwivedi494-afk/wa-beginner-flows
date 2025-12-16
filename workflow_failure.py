@@ -7,3 +7,8 @@ def failing_task():
 @flow
 def failure_workflow():
     failing_task()
+    
+@task(retries=3, retry_delay_seconds=5)
+def retry_task():
+    raise Exception("Retrying")
+
