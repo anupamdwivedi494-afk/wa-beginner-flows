@@ -1,23 +1,16 @@
-
-from prefect import flow, task, get_run_logger
+from prefect import flow, task
 
 @task
 def extract():
-    logger = get_run_logger()
-    logger.info("Extracting data...")
     return "Data Extracted"
 
 @task
 def transform(data):
-    logger = get_run_logger()
-    logger.info(f"Transforming: {data}")
     return f"{data} → Transformed"
 
 @task
 def load(data):
-    logger = get_run_logger()
-    logger.info(f"Loading: {data}")
-    return f"{data}"
+    return f"{data}"  # Logs will not show in Cloud
 
 @flow
 def etl_flow(job_name: str = "Daily ETL"):
@@ -27,12 +20,8 @@ def etl_flow(job_name: str = "Daily ETL"):
 
 @flow
 def post_etl_flow():
-    logger = get_run_logger()
-    logger.info("Post ETL tasks executed")
-    return "Post ETL tasks executed"
+    return "Post ETL tasks executed"  # Logs not visible
 
 @flow
 def notification_flow():
-    logger = get_run_logger()
-    logger.info("Notification sent")
-    return "Notification sent"
+    return "Notification sent"  # Logs not visible
