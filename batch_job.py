@@ -12,6 +12,10 @@ def transform(data):
 @task
 def load(data):
     return f"{data}"  # Logs will not show in Cloud
+@task
+def load(data):
+    raise Exception("Simulated failure")
+
 
 @flow
 def etl_flow(job_name: str = "Daily ETL"):
