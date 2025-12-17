@@ -12,9 +12,13 @@ def transform(data):
 @task
 def load(data):
     return f"{data}"  # Logs will not show in Cloud
+
 @task
-def load(data):
-    raise Exception("Simulated failure")
+def transform(data):
+    import time
+    time.sleep(300)  # Simulates long task
+    return f"{data} → Transformed"
+
 
 
 @flow
